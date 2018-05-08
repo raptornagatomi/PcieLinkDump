@@ -2,3 +2,10 @@
 src/GPATH
 src/GRTAGS
 src/GTAGS
+*.obj
+*.exe
+*.lk1
+*.map
+*.mk
+*.mk1
+*.sym
