@@ -39,10 +39,10 @@ typedef union {
                 unsigned long  AspmSupport     : 2;     // bit 10, 11
                 unsigned long  ExL0Latency     : 3;     // bit 12, 13, 14
                 unsigned long  ExL1Latency     : 3;     // bit 15, 16, 17
-                unsigned long  ClockPm         : 1;     // bit 18 
-                unsigned long  SurpDownErr     : 1;     // bit 19 
-                unsigned long  DllLnkActive    : 1;     // bit 20 
-                unsigned long  BandwNotify     : 1;     // bit 21 
+                unsigned long  ClockPm         : 1;     // bit 18
+                unsigned long  SurpDownErr     : 1;     // bit 19
+                unsigned long  DllLnkActive    : 1;     // bit 20
+                unsigned long  BandwNotify     : 1;     // bit 21
                 unsigned long  Reserved        : 2;     // bit 22,23
                 unsigned long  PortNum         : 8;     // bit 24,25,26,27,28,29,30,31
         } Bits;
@@ -92,6 +92,7 @@ typedef struct {
 // Enumeration
 //
 //-------------------------------------------------------------------------------------------------
+// Maximum Link Speed
 enum {
         LinkSpeed_2_5_GTS = 1,
         LinkSpeed_5_0_GTS,
@@ -99,6 +100,7 @@ enum {
         LinkSpeed_16_0_GTS
 };
 
+// ASPM Support
 enum {
         AspmNotSupport = 0,
         AspmL0s,
@@ -106,11 +108,36 @@ enum {
         AspmL0sAndL1
 };
 
+// ASPM Control
 enum {
         AspmDisabled = 0,
         AspmL0sEnabled,
         AspmL1Enabled,
         AspmL0sAndL1Enabled
+};
+
+// L0s Exit Latency
+enum {
+        L0sExL_LT64ns,                  // 000b: Less than 64 ns
+        L0sExL_GE64ns_LT128ns,          // 001b: 64 ns to less than 128 ns
+        L0sExL_GE128ns_LT256ns,         // 010b: 128 ns to less than 256 ns
+        L0sExL_GE256ns_LT512ns,         // 011b: 256 ns to less than 512 ns
+        L0sExL_GE512ns_LT1us,           // 100b: 512 ns to less than 1 us
+        L0sExL_GE1us_LT2us,             // 101b: 1 us to less than 2 us
+        L0sExL_GE2us_LE4us,             // 110b: 2 us-4 us
+        L0sExL_GT4us                    // 111b: More than 4 us
+};
+
+// L1 Exit Latency
+enum {
+        L1ExL_LT1us,                    // 000b: Less than 1us
+        L1ExL_GE1us_LT2us,              // 001b: 1 us to less than 2 us
+        L1ExL_GE2us_LT4us,              // 010b: 2 us to less than 4 us
+        L1ExL_GE4us_LT8us,              // 011b: 4 us to less than 8 us
+        L1ExL_GE8us_LT16us,             // 100b: 8 us to less than 16 us
+        L1ExL_GE16us_LT32us,            // 101b: 16 us to less than 32 us
+        L1ExL_GE32us_LT64us,            // 110b: 32 us-64 us
+        L1ExL_GT64us                    // 111b: More than 64 us
 };
 
 //-------------------------------------------------------------------------------------------------

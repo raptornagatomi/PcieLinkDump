@@ -174,6 +174,85 @@ void PcieLinkInterpreter(PCIE_CAP_LINK_REGS *PcieLink)
                 break;
         }
 
+        // L0s Exit Latency
+        printf("  - L0s Exit Latency: ");
+        switch(PcieLink->LinkCap.Bits.ExL0Latency) {
+        case L0sExL_LT64ns:
+                printf("Less than 64 ns\n");
+                break;
+
+        case L0sExL_GE64ns_LT128ns:
+                printf("64 ns to less than 128 ns\n");
+                break;
+
+        case L0sExL_GE128ns_LT256ns:
+                printf("128 ns to less than 256 ns\n");
+                break;
+
+        case L0sExL_GE256ns_LT512ns:
+                printf("256 ns to less than 512 ns\n");
+                break;
+
+        case L0sExL_GE512ns_LT1us:
+                printf("512 ns to less than 1 us\n");
+                break;
+
+        case L0sExL_GE1us_LT2us:
+                printf("1 us to less than 2 us\n");
+                break;
+
+        case L0sExL_GE2us_LE4us:
+                printf("2 us - 4 us\n");
+                break;
+
+        case L0sExL_GT4us:
+                printf("More than 4 us\n");
+                break;
+
+        default:
+                printf("Unknown\n");
+                break;
+        };
+
+        // L1 Exit Latency
+        printf("  - L1 Exit Latency: ");
+        switch(PcieLink->LinkCap.Bits.ExL1Latency) {
+        case L1ExL_LT1us:
+                printf("Less than 1us\n");
+                break;
+
+        case L1ExL_GE1us_LT2us:
+                printf("1 us to less than 2 us\n");
+                break;
+
+        case L1ExL_GE2us_LT4us:
+                printf("2 us to less than 4 us\n");
+                break;
+
+        case L1ExL_GE4us_LT8us:
+                printf("4 us to less than 8 us\n");
+                break;
+
+        case L1ExL_GE8us_LT16us:
+                printf("8 us to less than 16 us\n");
+                break;
+
+        case L1ExL_GE16us_LT32us:
+                printf("16 us to less than 32 us\n");
+                break;
+
+        case L1ExL_GE32us_LT64us:
+                printf("32 us-64 us\n");
+                break;
+
+        case L1ExL_GT64us:
+                printf("More than 64 us\n");
+                break;
+
+        default:
+                break;
+        };
+
         //
         // Link Control
         //
